@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>短链接工具</title>
+</head>
+<body>
+
+
+<div class="input-group mb-3" style="margin-top: 10%" >
+    <input type="text" id="url" style="margin-left: 20%" class="form-control" placeholder="请输入网址Url"  aria-describedby="button-addon2">
+    <div class="input-group-append" style="margin-right: 20%;">
+        <button class="btn  btn-primary" type="button" id="generate"  onclick="create()">生成短链接</button>
+    </div>
+
+</div>
+
+
+<div class="card" style="margin-left: 20%;margin-right: 20%;height: 55px">
+    <div class="card-body" >
+        <h7 class="card-subtitle mb-1 text-muted">生成的短链接:  </h7><a id="short" href="http://www.baidu.com" class="card-link" target="_blank"></a>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    function create(){
+        $.ajax({
+                type: 'post',
+                url: '/short',
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify({"SourceUrl":$("#url").val()}),
+                success: function (data) {
+
+                    $("#short").css("color", "")
+                    $("#short").text(data["ShortUrl"])
+                    $("#short").attr('href',data["ShortUrl"])
+                },
+                error:function (data) {
+                    // console.log(data.responseJSON)
+                    $("#short").text(data.responseJSON["msg"])
+                    $("#short").css("color", "red")
+                    $("#short").removeAttr("href")
+                }
+            });
+    }
+</script>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" ></script>
+
+
+</body>
+</html>

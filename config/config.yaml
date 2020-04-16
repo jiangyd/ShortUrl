@@ -1,0 +1,5 @@
+schema: http
+bind: 127.0.0.1:8116
+mongodb:
+  address: 127.0.0.1:27017
+  db: shortUrl
