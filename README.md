@@ -16,6 +16,6 @@
 
 ![image](https://github.com/jiangyd/image/blob/master/shortUrl/%E7%94%9F%E6%88%90%E7%9F%AD%E9%93%BE%E6%8E%A5.jpg)
 
-> 访问短链接，自动调整目标网址
+> 访问短链接，自动跳转目标网址
 
 ![image](https://github.com/jiangyd/image/blob/master/shortUrl/example.jpg)
